@@ -30,17 +30,11 @@ jobs:
           ${{ runner.os }}-php-
 
     
-    - name: Set up
-      uses: shivammathur/set-php@v2
-      with:
-          php_version: "8.2"
-          tools: composer:2.0
-     # run: composer install --prefer-dist --no-progress
-    - name: Validate Composer version
-      run: composer --version
     - name: Install dependencies
-      run: composer install
-    # Add a test script to composer.json, for instance: "test": "vendor/bin/phpunit"
+      uses: php-actions/composer@v6
+      with:
+        php_version: "8.2"
+        command: composer install
     # Docs: https://getcomposer.org/doc/articles/scripts.md
 
     # - name: Run test suite
