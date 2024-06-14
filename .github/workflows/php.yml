@@ -34,6 +34,7 @@ jobs:
       uses: php-actions/composer@v6
       with:
         php_version: "8.2"
+        command: composer
     # Docs: https://getcomposer.org/doc/articles/scripts.md
 
     # - name: Run test suite
