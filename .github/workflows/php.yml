@@ -36,6 +36,23 @@ jobs:
         php_version: "8.2"
         #command: composer
     # Docs: https://getcomposer.org/doc/articles/scripts.md
-
+    
+  notify:
+    needs: build
+    runs-on: ubuntu-latest
+    if: failure()
+    steps:
+    - name: Send Email Notification
+      uses: dawidd6/action-send-mail@v2
+      with:
+        server_address: smtp.your-email.com
+        server_port: 587
+        username: ${{ secrets.SMTP_USERNAME }}
+        password: ${{ secrets.SMTP_PASSWORD }}
+        subject: Build Failed
+        to: tongsreng@itc.edu.kh,
+        from: github-actions@yourdomain.com
+        content_type: text/plain
+        body: Build failed for commit ${{ github.sha }} by ${{ github.actor }}.
     # - name: Run test suite
     #   run: composer run-script test
