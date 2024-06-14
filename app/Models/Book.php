@@ -38,3 +38,4 @@ class Book extends Model
         return md5($salt.md5($result));
     }
 }
+
